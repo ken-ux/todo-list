@@ -8,6 +8,8 @@ export default class ToDoList {
   }
 
   removeFromList(item) {
+    let index = this.items.indexOf(item);
+    this.items.splice(index, 1);
     console.log("Item removed.");
   }
 }
