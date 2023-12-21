@@ -1,5 +1,6 @@
 export default class ToDoList {
-  constructor() {
+  constructor(name) {
+    this.name = name;
     this.items = [];
   }
 
