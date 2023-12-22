@@ -1,16 +1,35 @@
 import "./style.css";
 import ToDoItem from "./ToDoItem";
 import ToDoList from "./ToDoList";
+import sidebar from "./sidebar";
 
-let testItem1 = new ToDoItem("task_1", "task_desc", "date", "high");
-let testItem2 = new ToDoItem("task_2", "task_desc", "date", "high");
-let testItem3 = new ToDoItem("task_1", "task_desc", "date", "high");
+const content = document.querySelector("#content");
+content.appendChild(sidebar);
 
-let list = new ToDoList();
+let testItem1 = new ToDoItem(
+  "task_1",
+  "task_desc",
+  new Date(2014, 1, 11),
+  "high"
+);
+let testItem2 = new ToDoItem(
+  "task_2",
+  "task_desc",
+  new Date(2014, 1, 11),
+  "high"
+);
+let testItem3 = new ToDoItem(
+  "task_3",
+  "task_desc",
+  new Date(2014, 1, 11),
+  "high"
+);
+
+let list = new ToDoList("example");
 
 list.addToList(testItem1);
 list.addToList(testItem2);
 list.addToList(testItem3);
 
-list.removeFromList(testItem2);
+console.log(list);
 console.log(list.items);
