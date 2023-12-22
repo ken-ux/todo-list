@@ -13,6 +13,13 @@ export default function createListItems(list) {
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     item.appendChild(checkbox);
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        itemContent.classList = "item-content completed";
+      } else {
+        itemContent.classList = "item-content";
+      }
+    });
 
     let itemContent = document.createElement("div");
     itemContent.classList = "item-content";
@@ -45,6 +52,10 @@ export default function createListItems(list) {
     let deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      list.removeFromList(list.items[i]);
+      listItems.removeChild(item);
+    });
     item.appendChild(deleteButton);
 
     listItems.appendChild(item);
