@@ -2,6 +2,7 @@ import "./style.css";
 import ToDoItem from "./ToDoItem";
 import ToDoList from "./ToDoList";
 import sidebar from "./sidebar";
+import createListItems from "./ListItems";
 
 const content = document.querySelector("#content");
 content.appendChild(sidebar);
@@ -33,3 +34,6 @@ list.addToList(testItem3);
 
 console.log(list);
 console.log(list.items);
+
+
+content.appendChild(createListItems(list));
