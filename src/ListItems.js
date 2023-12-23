@@ -45,7 +45,7 @@ export default function createListItems(list) {
     secondDiv.appendChild(dueDate);
 
     let priorityBadge = document.createElement("div");
-    priorityBadge.classList = "badge";
+    priorityBadge.classList = `badge ${list.items[i].priority}`;
     priorityBadge.textContent = list.items[i].priority;
     secondDiv.appendChild(priorityBadge);
 
