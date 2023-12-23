@@ -1,3 +1,5 @@
+import displayList from "./ListItems";
+
 const sidebar = document.createElement("div");
 sidebar.id = "sidebar";
 content.appendChild(sidebar);
@@ -30,6 +32,7 @@ export default function (lists) {
     let list = document.createElement("button");
     list.type = "button";
     list.textContent = lists[i].name;
+    list.addEventListener("click", () => displayList(lists[i]));
     sidebarButtons2.appendChild(list);
   }
 

@@ -2,7 +2,7 @@ import "./style.css";
 import ToDoItem from "./ToDoItem";
 import ToDoList from "./ToDoList";
 import sidebar from "./sidebar";
-import createListItems from "./ListItems";
+import displayList from "./ListItems";
 
 let toDoLists = [];
 
@@ -25,14 +25,17 @@ let testItem3 = new ToDoItem(
   "low"
 );
 
-let list = new ToDoList("example");
-
+let list = new ToDoList("Default List");
 list.addToList(testItem1);
 list.addToList(testItem2);
 list.addToList(testItem3);
-
 toDoLists.push(list);
+
+// Remove these lines later
+let list_2 = new ToDoList("Default List 2");
+list_2.addToList(testItem3);
+toDoLists.push(list_2);
 
 const content = document.querySelector("#content");
 content.appendChild(sidebar(toDoLists));
-content.appendChild(createListItems(toDoLists[0]));
+displayList(list);

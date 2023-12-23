@@ -1,4 +1,4 @@
-export default function createListItems(list) {
+export function createListItems(list) {
   const listItems = document.createElement("div");
   listItems.id = "list-items";
 
@@ -62,4 +62,13 @@ export default function createListItems(list) {
   }
 
   return listItems;
+}
+
+export default function displayList(list) {
+  const content = document.querySelector("#content");
+  if (content.lastChild.id === "list-items") {
+    content.replaceChild(createListItems(list), content.lastChild);
+  } else {
+    content.appendChild(createListItems(list));
+  }
 }
