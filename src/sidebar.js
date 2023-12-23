@@ -25,10 +25,13 @@ const sidebarButtons2 = document.createElement("div");
 sidebarButtons2.classList = "buttons";
 sidebar.appendChild(sidebarButtons2);
 
-// Dynamically add lists here
-const list1 = document.createElement("button");
-list1.type = "button";
-list1.textContent = "List 1";
-sidebarButtons2.appendChild(list1);
+export default function (lists) {
+  for (let i = 0; i < lists.length; i++) {
+    let list = document.createElement("button");
+    list.type = "button";
+    list.textContent = lists[i].name;
+    sidebarButtons2.appendChild(list);
+  }
 
-export default sidebar;
+  return sidebar;
+}
