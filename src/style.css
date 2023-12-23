@@ -104,6 +104,14 @@ h2 {
   border-radius: 20px;
 }
 
+.badge.medium {
+  background-color: moccasin;
+}
+
+.badge.low {
+  background-color: lightgreen;
+}
+
 .completed {
   text-decoration: line-through;
   background-color: lightgrey;
