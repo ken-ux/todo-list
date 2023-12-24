@@ -3,6 +3,7 @@ import ToDoItem from "./ToDoItem";
 import ToDoList from "./ToDoList";
 import sidebar from "./sidebar";
 import displayList from "./ListItems";
+import { newItemModal } from "./AddModals";
 
 let toDoLists = [];
 
@@ -39,3 +40,11 @@ toDoLists.push(list_2);
 const content = document.querySelector("#content");
 content.appendChild(sidebar(toDoLists));
 displayList(list);
+
+const addTaskButton = document.querySelector(".add-button.add-task");
+addTaskButton.addEventListener("click", () => {
+  if (document.querySelector("dialog")) {
+    content.removeChild(document.querySelector("dialog"));
+  }
+  content.appendChild(newItemModal(toDoLists));
+});
