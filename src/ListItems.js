@@ -66,8 +66,11 @@ export function createListItems(list) {
 
 export default function displayList(list) {
   const content = document.querySelector("#content");
-  if (content.lastChild.id === "list-items") {
-    content.replaceChild(createListItems(list), content.lastChild);
+  if (document.querySelector("#list-items")) {
+    content.replaceChild(
+      createListItems(list),
+      document.querySelector("#list-items")
+    );
   } else {
     content.appendChild(createListItems(list));
   }
