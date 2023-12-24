@@ -26,7 +26,7 @@ export default function createSidebar(lists) {
   sidebarButtons.appendChild(createListButton);
 
   const sidebarButtons2 = document.createElement("div");
-  sidebarButtons2.classList = "buttons";
+  sidebarButtons2.classList = "buttons list";
   sidebar.appendChild(sidebarButtons2);
 
   for (let i = 0; i < lists.length; i++) {
@@ -41,7 +41,18 @@ export default function createSidebar(lists) {
 }
 
 export function refreshSidebar(lists) {
-  const content = document.querySelector("#content");
   const sidebar = document.querySelector("#sidebar");
-  content.replaceChild(createSidebar(lists), sidebar);
+
+  const oldListButtons = document.querySelector(".buttons.list");
+  const updatedListButtons = document.createElement("div");
+  updatedListButtons.classList = "buttons list";
+  sidebar.replaceChild(updatedListButtons, oldListButtons);
+
+  for (let i = 0; i < lists.length; i++) {
+    let list = document.createElement("button");
+    list.type = "button";
+    list.textContent = lists[i].name;
+    list.addEventListener("click", () => displayList(lists[i]));
+    updatedListButtons.appendChild(list);
+  }
 }
