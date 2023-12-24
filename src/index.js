@@ -7,20 +7,24 @@ import { newItemModal, newListModal } from "./AddModals";
 
 let toDoLists = [];
 
-let testItem1 = new ToDoItem(
-  "Your first to-do item!",
-  "This is a description of what you need to do.",
-  new Date(2025, 1, 11),
-  "high"
-);
+if (localStorage.getItem("storedLists")) {
+  toDoLists = localStorage.getItem("storedLists");
+} else {
+  let testItem1 = new ToDoItem(
+    "Your first to-do item!",
+    "This is a description of what you need to do.",
+    new Date(2025, 1, 11),
+    "high"
+  );
 
-let list = new ToDoList("Default List");
-list.addToList(testItem1);
-toDoLists.push(list);
+  let list = new ToDoList("Default List");
+  list.addToList(testItem1);
+  toDoLists.push(list);
+}
 
 const content = document.querySelector("#content");
 content.appendChild(createSidebar(toDoLists));
-displayList(list);
+displayList(toDoLists[0]);
 
 const addTaskButton = document.querySelector(".add-button.add-task");
 addTaskButton.addEventListener("click", () => {

@@ -65,6 +65,9 @@ export function createListItems(list) {
 }
 
 export default function displayList(list) {
+  if (list === undefined) {
+    return;
+  }
   const content = document.querySelector("#content");
   if (document.querySelector("#list-items")) {
     content.replaceChild(
