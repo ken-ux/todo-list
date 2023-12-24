@@ -125,6 +125,7 @@ export function newItemModal(lists) {
     let date = formData.get("date");
     let priority = formData.get("priority");
     let list_name = formData.get("list");
+    date = new Date(date.replace(/-/g, "/"));
 
     let newTask = new ToDoItem(title, desc, date, priority);
     let selectedList = lists.find((list) => list.name === list_name);
