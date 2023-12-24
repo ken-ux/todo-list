@@ -13,14 +13,15 @@ sidebarButtons.classList = "buttons";
 sidebar.appendChild(sidebarButtons);
 
 const addTaskButton = document.createElement("button");
-const createListButton = document.createElement("button");
 addTaskButton.type = "button";
-createListButton.type = "button";
-addTaskButton.classList = "add-button";
-createListButton.classList = "add-button";
+addTaskButton.classList = "add-button add-task";
 addTaskButton.textContent = "Add Task";
-createListButton.textContent = "Create List";
 sidebarButtons.appendChild(addTaskButton);
+
+const createListButton = document.createElement("button");
+createListButton.type = "button";
+createListButton.classList = "add-button create-list";
+createListButton.textContent = "Create List";
 sidebarButtons.appendChild(createListButton);
 
 const sidebarButtons2 = document.createElement("div");
