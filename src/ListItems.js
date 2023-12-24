@@ -41,7 +41,7 @@ export function createListItems(list) {
     itemContent.appendChild(secondDiv);
 
     let dueDate = document.createElement("p");
-    dueDate.textContent = list.items[i].dueDate;
+    dueDate.textContent = "Due: " + list.items[i].dueDate;
     secondDiv.appendChild(dueDate);
 
     let priorityBadge = document.createElement("div");

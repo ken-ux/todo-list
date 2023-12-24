@@ -8,13 +8,13 @@ import { newItemModal, newListModal } from "./AddModals";
 let toDoLists = [];
 
 let testItem1 = new ToDoItem(
-  "task_1",
-  "task_desc",
-  new Date(2014, 1, 11),
+  "Your first to-do item!",
+  "This is a description of what you need to do.",
+  new Date(2025, 1, 11),
   "high"
 );
 
-let list = new ToDoList("Default List 1");
+let list = new ToDoList("Default List");
 list.addToList(testItem1);
 toDoLists.push(list);
 
