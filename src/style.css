@@ -1,10 +1,14 @@
+html {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: whitesmoke;
+  background-image: linear-gradient(to bottom right, lavender, pink);
 }
 
 h2,
