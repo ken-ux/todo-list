@@ -1,9 +1,10 @@
 import ToDoItem from "./ToDoItem";
+import ToDoList from "./ToDoList";
 import displayList from "./ListItems";
+import { refreshSidebar } from "./sidebar";
 
 export function newItemModal(lists) {
   const dialog = document.createElement("dialog");
-  // Remove this after
   dialog.setAttribute("open", "");
 
   const form = document.createElement("form");
@@ -134,4 +135,49 @@ export function newItemModal(lists) {
   return dialog;
 }
 
-export function newListModal() {}
+export function newListModal(lists) {
+  const dialog = document.createElement("dialog");
+  // Remove this after
+  dialog.setAttribute("open", "");
+
+  const form = document.createElement("form");
+  form.action = "";
+  form.method = "dialog";
+
+  dialog.appendChild(form);
+
+  const h2 = document.createElement("h2");
+  h2.textContent = "Create a List";
+  form.appendChild(h2);
+
+  const titleDiv = document.createElement("div");
+
+  const titleLabel = document.createElement("label");
+  titleLabel.setAttribute("for", "title");
+  titleLabel.textContent = "List Name";
+  titleDiv.appendChild(titleLabel);
+
+  const titleInput = document.createElement("input");
+  titleInput.type = "text";
+  titleInput.id = "title";
+  titleInput.name = "title";
+  titleDiv.appendChild(titleInput);
+
+  form.appendChild(titleDiv);
+
+  const submitButton = document.createElement("button");
+  submitButton.type = "submit";
+  submitButton.textContent = "Submit";
+  form.appendChild(submitButton);
+
+  form.addEventListener("submit", () => {
+    const formData = new FormData(form);
+    let title = formData.get("title");
+
+    let newList = new ToDoList(title);
+    lists.push(newList);
+    refreshSidebar(lists);
+  });
+
+  return dialog;
+}
