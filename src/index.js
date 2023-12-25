@@ -8,9 +8,12 @@ import { newItemModal, newListModal } from "./AddModals";
 let toDoLists = [];
 
 if (localStorage.getItem("storedLists")) {
-  toDoLists = localStorage.getItem("storedLists");
+  toDoLists = JSON.parse(localStorage.getItem("storedLists"));
+  for (let i = 0; i < toDoLists.length; i++) {
+    Object.setPrototypeOf(toDoLists[i], ToDoList.prototype);
+  }
 } else {
-  let testItem1 = new ToDoItem(
+  let item = new ToDoItem(
     "Your first to-do item!",
     "This is a description of what you need to do.",
     new Date(2025, 1, 11),
@@ -18,8 +21,9 @@ if (localStorage.getItem("storedLists")) {
   );
 
   let list = new ToDoList("Default List");
-  list.addToList(testItem1);
+  list.addToList(item);
   toDoLists.push(list);
+  localStorage.setItem("storedLists", JSON.stringify(toDoLists));
 }
 
 const content = document.querySelector("#content");
