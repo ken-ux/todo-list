@@ -131,6 +131,7 @@ export function newItemModal(lists) {
     let selectedList = lists.find((list) => list.name === list_name);
     selectedList.addToList(newTask);
     displayList(selectedList);
+    localStorage.setItem("storedLists", JSON.stringify(lists));
   });
 
   return dialog;
@@ -178,6 +179,7 @@ export function newListModal(lists) {
     let newList = new ToDoList(title);
     lists.push(newList);
     refreshSidebar(lists);
+    localStorage.setItem("storedLists", JSON.stringify(lists));
   });
 
   return dialog;
