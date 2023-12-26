@@ -1,4 +1,4 @@
-export class ToDoProject {
+export class Project {
   constructor(name) {
     this.name = name;
     this.items = new Array();
@@ -26,7 +26,7 @@ export class ToDoProject {
   }
 }
 
-export class ToDoItem {
+export class ToDo {
   constructor(name, description, dueDate, priority) {
     this.name = name;
     this.description = description;
@@ -50,4 +50,8 @@ export class ToDoItem {
   toggleComplete() {
     this.complete = !this.complete;
   }
+}
+
+export function saveToStorage(projects) {
+  localStorage.setItem("")
 }
