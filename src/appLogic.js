@@ -16,11 +16,11 @@ export class Project {
     }
   }
 
-  addToList(item) {
+  addToProject(item) {
     this.items.push(item);
   }
 
-  removeFromList(item) {
+  removeFromProject(item) {
     let index = this.items.indexOf(item);
     this.items.splice(index, 1);
   }
@@ -53,5 +53,9 @@ export class ToDo {
 }
 
 export function saveToStorage(projects) {
-  localStorage.setItem("")
+  localStorage.setItem("projects", projects);
+}
+
+export function loadStorage() {
+  return localStorage.getItem("projects");
 }
