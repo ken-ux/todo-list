@@ -88,5 +88,20 @@ export function displayProject(project) {
     const item = document.createElement("div");
     item.textContent = project.items[i].name;
     projectItems.appendChild(item);
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", () =>
+      console.log("Edit details here")
+    );
+    projectItems.appendChild(editButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      project.removeFromProject(project.items[i]);
+      displayProject(project);
+    });
+    projectItems.appendChild(deleteButton);
   }
 }
