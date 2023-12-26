@@ -59,3 +59,34 @@ export function saveToStorage(projects) {
 export function loadStorage() {
   return localStorage.getItem("projects");
 }
+
+const sidebarProjects = document.querySelector("#projects");
+
+export function displaySidebarProjects(projects) {
+  for (let i = 0; i < projects.length; i++) {
+    const project = document.createElement("div");
+    project.textContent = projects[i].name;
+    project.addEventListener("click", () => displayProject(projects[i]));
+    sidebarProjects.appendChild(project);
+  }
+}
+
+const main = document.querySelector("main");
+const projectItems = document.querySelector("#project-items");
+const projectName = document.createElement("h1");
+main.prepend(projectName);
+
+export function displayProject(project) {
+  while (projectItems.hasChildNodes()) {
+    projectItems.removeChild(projectItems.firstChild);
+  }
+  // Display title
+  projectName.textContent = project.name;
+
+  // Display to-dos
+  for (let i = 0; i < project.items.length; i++) {
+    const item = document.createElement("div");
+    item.textContent = project.items[i].name;
+    projectItems.appendChild(item);
+  }
+}

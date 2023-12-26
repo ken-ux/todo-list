@@ -1,5 +1,10 @@
 import "./style.css";
-import { ToDo, Project } from "./appLogic";
+import {
+  ToDo,
+  Project,
+  displaySidebarProjects,
+  displayProject,
+} from "./appLogic";
 
 const projects = [];
 projects.push(new Project("default"));
@@ -10,29 +15,22 @@ projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
 projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
 projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
 
-const sidebar = document.querySelector("#sidebar");
-for (let i = 0; i < projects.length; i++) {
-  const project = document.createElement("div");
-  project.textContent = projects[i].name;
-  sidebar.appendChild(project);
-}
+projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
+projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
 
+projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
+
+const sidebar = document.querySelector("#sidebar");
 const addProjectButton = document.createElement("button");
 addProjectButton.textContent = "Add Project";
 sidebar.appendChild(addProjectButton);
 
-const main = document.querySelector("main");
-const projectName = document.createElement("h1");
-projectName.textContent = projects[0].name;
-main.prepend(projectName);
+displaySidebarProjects(projects);
 
-const projectItems = document.querySelector("#project-items");
-for (let i = 0; i < projects[0].items.length; i++) {
-  const item = document.createElement("div");
-  item.textContent = projects[0].items[i].name;
-  projectItems.appendChild(item);
-}
+const main = document.querySelector("main");
+
+displayProject(projects[0]);
 
 const addToDoButton = document.createElement("button");
 addToDoButton.textContent = "Add To-Do";
-projectItems.appendChild(addToDoButton);
+main.appendChild(addToDoButton);
