@@ -1,56 +1,5 @@
-export class Project {
-  constructor(name) {
-    this.name = name;
-    this.items = new Array();
-  }
-
-  get name() {
-    return this._name;
-  }
-
-  set name(value) {
-    if (value === "") {
-      throw new TypeError("Name cannot be empty.");
-    } else {
-      this._name = value;
-    }
-  }
-
-  addToProject(item) {
-    this.items.push(item);
-  }
-
-  removeFromProject(item) {
-    let index = this.items.indexOf(item);
-    this.items.splice(index, 1);
-  }
-}
-
-export class ToDo {
-  constructor(name, description, dueDate, priority) {
-    this.name = name;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.complete = false;
-  }
-
-  get name() {
-    return this._name;
-  }
-
-  set name(value) {
-    if (value === "") {
-      throw new TypeError("Name cannot be empty.");
-    } else {
-      this._name = value;
-    }
-  }
-
-  toggleComplete() {
-    this.complete = !this.complete;
-  }
-}
+import Project from "./project";
+import ToDo from "./toDo";
 
 export function saveToStorage(projects) {
   localStorage.setItem("projects", projects);
@@ -105,3 +54,17 @@ export function displayProject(project) {
     projectItems.appendChild(deleteButton);
   }
 }
+
+export const projects = [];
+projects.push(new Project("default"));
+projects.push(new Project("default_2"));
+projects.push(new Project("default_3"));
+
+projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
+projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
+projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
+
+projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
+projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
+
+projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
