@@ -1,12 +1,24 @@
 import Project from "./project";
 import ToDo from "./toDo";
 
-export function saveToStorage(projects) {
-  localStorage.setItem("projects", projects);
+export const projects = [];
+projects.push(new Project("default"));
+projects.push(new Project("default_2"));
+projects.push(new Project("default_3"));
+
+projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
+projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
+projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
+projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
+projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
+projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
+
+export function saveToStorage() {
+  localStorage.setItem("projects", JSON.stringify(projects));
 }
 
 export function loadStorage() {
-  return localStorage.getItem("projects");
+  return JSON.parse(localStorage.getItem("projects"));
 }
 
 const sidebarProjects = document.querySelector("#projects");
@@ -54,17 +66,3 @@ export function displayProject(project) {
     projectItems.appendChild(deleteButton);
   }
 }
-
-export const projects = [];
-projects.push(new Project("default"));
-projects.push(new Project("default_2"));
-projects.push(new Project("default_3"));
-
-projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
-projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
-projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
-
-projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
-projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
-
-projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
