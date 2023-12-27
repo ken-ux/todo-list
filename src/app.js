@@ -79,9 +79,45 @@ addProjectForm.addEventListener("submit", () => {
 });
 
 const cancelProjectButton = document.querySelector(
-  "dialog#add-project .cancelButton"
+  "dialog#add-project .cancel-button"
 );
 cancelProjectButton.addEventListener("click", () => {
   const addProjectDialog = document.querySelector("dialog#add-project");
   addProjectDialog.close();
 });
+
+const addToDoForm = document.querySelector("dialog#add-todo > form");
+addToDoForm.addEventListener("submit", () => {
+  const formData = new FormData(addToDoForm);
+  let name = formData.get("name");
+  let desc = formData.get("desc");
+  let dueDate = formData.get("dueDate");
+  let priority = formData.get("priority");
+  let projectToAddTo = formData.get("projects");
+
+  projects[projectToAddTo].addToProject(
+    new ToDo(name, desc, dueDate, priority)
+  );
+  displayProject(projects[projectToAddTo]);
+});
+
+const cancelToDoButton = document.querySelector(
+  "dialog#add-todo .cancel-button"
+);
+cancelToDoButton.addEventListener("click", () => {
+  const addToDoDialog = document.querySelector("dialog#add-todo");
+  addToDoDialog.close();
+});
+
+export function displayProjectSelect() {
+  const projectSelect = document.querySelector("select#projects");
+  while (projectSelect.hasChildNodes()) {
+    projectSelect.removeChild(projectSelect.firstChild);
+  }
+  for (let i = 0; i < projects.length; i++) {
+    const option = document.createElement("option");
+    option.value = i; // Could use name as value but might be difficult to add to projects of same name
+    option.textContent = projects[i].name;
+    projectSelect.appendChild(option);
+  }
+}
