@@ -24,6 +24,9 @@ export function loadStorage() {
 const sidebarProjects = document.querySelector("#projects");
 
 export function displaySidebarProjects(projects) {
+  while (sidebarProjects.hasChildNodes()) {
+    sidebarProjects.removeChild(sidebarProjects.firstChild);
+  }
   for (let i = 0; i < projects.length; i++) {
     const project = document.createElement("div");
     project.textContent = projects[i].name;
@@ -66,3 +69,19 @@ export function displayProject(project) {
     projectItems.appendChild(deleteButton);
   }
 }
+
+const addProjectForm = document.querySelector("dialog#add-project > form");
+addProjectForm.addEventListener("submit", () => {
+  const formData = new FormData(addProjectForm);
+  let name = formData.get("name");
+  projects.push(new Project(name));
+  displaySidebarProjects(projects);
+});
+
+const cancelProjectButton = document.querySelector(
+  "dialog#add-project .cancelButton"
+);
+cancelProjectButton.addEventListener("click", () => {
+  const addProjectDialog = document.querySelector("dialog#add-project");
+  addProjectDialog.close();
+});
