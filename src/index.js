@@ -11,7 +11,7 @@ addProjectButton.addEventListener("click", () => {
   addProjectDialog.showModal();
 });
 
-displaySidebarProjects(projects);
+displaySidebarProjects();
 
 const main = document.querySelector("main");
 

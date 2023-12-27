@@ -23,7 +23,7 @@ export function loadStorage() {
 
 const sidebarProjects = document.querySelector("#projects");
 
-export function displaySidebarProjects(projects) {
+export function displaySidebarProjects() {
   while (sidebarProjects.hasChildNodes()) {
     sidebarProjects.removeChild(sidebarProjects.firstChild);
   }
@@ -36,6 +36,7 @@ export function displaySidebarProjects(projects) {
 }
 
 const main = document.querySelector("main");
+
 const projectItems = document.querySelector("#project-items");
 const projectName = document.createElement("h1");
 main.prepend(projectName);
@@ -46,6 +47,21 @@ export function displayProject(project) {
   }
   // Display title
   projectName.textContent = project.name;
+
+  // Remove delete project button when switching projects
+  if (document.querySelector(".delete-project-button")) {
+    main.removeChild(document.querySelector(".delete-project-button"));
+  }
+
+  // Display delete project button
+  const deleteProjectButton = document.createElement("button");
+  deleteProjectButton.classList = "delete-project-button";
+  deleteProjectButton.textContent = "Delete List";
+  main.insertBefore(deleteProjectButton, projectItems);
+  deleteProjectButton.addEventListener("click", () => {
+    removeFromProjects(project);
+    displaySidebarProjects();
+  });
 
   // Display to-dos
   for (let i = 0; i < project.items.length; i++) {
@@ -120,4 +136,9 @@ export function displayProjectSelect() {
     option.textContent = projects[i].name;
     projectSelect.appendChild(option);
   }
+}
+
+function removeFromProjects(project) {
+  let index = projects.findIndex((a) => a === project);
+  projects.splice(index, 1);
 }
