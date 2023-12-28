@@ -26,9 +26,9 @@ if (localStorage.getItem("projects")) {
   }
 } else {
   // Initialize default projects
-  projects.push(new Project("default"));
-  projects.push(new Project("default_2"));
-  projects.push(new Project("default_3"));
+  projects.push(new Project("Default Project"));
+  projects.push(new Project("Default Project 2"));
+  projects.push(new Project("Default Project 3"));
 
   projects[0].addToProject(new ToDo("todo", "desc", "date", "Low"));
   projects[0].addToProject(new ToDo("todo_2", "desc", "date", "Medium"));
@@ -110,7 +110,28 @@ export function displayProject(project) {
   // Display to-dos
   for (let i = 0; i < project.items.length; i++) {
     const item = document.createElement("div");
-    item.textContent = project.items[i].name;
+    const item_details = document.createElement("div");
+    const buttons_container = document.createElement("div");
+
+    const item_name = document.createElement("h2");
+    item_name.textContent = project.items[i].name;
+
+    const item_desc = document.createElement("p");
+    item_desc.textContent = "Description: " + project.items[i].description;
+
+    const item_dueDate = document.createElement("p");
+    item_dueDate.textContent = "Due Date: " + project.items[i].dueDate;
+
+    const item_priority = document.createElement("p");
+    item_priority.textContent = "Priority: " + project.items[i].priority;
+
+    item_details.appendChild(item_name);
+    item_details.appendChild(item_desc);
+    item_details.appendChild(item_dueDate);
+    item_details.appendChild(item_priority);
+
+    item.appendChild(item_details);
+    item.appendChild(buttons_container);
     projectItems.appendChild(item);
 
     const editButton = document.createElement("button");
@@ -118,7 +139,7 @@ export function displayProject(project) {
     editButton.addEventListener("click", () => {
       populateEditForm(project, project.items[i]);
     });
-    item.appendChild(editButton);
+    buttons_container.appendChild(editButton);
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
@@ -127,7 +148,7 @@ export function displayProject(project) {
       displayProject(project);
       saveToStorage();
     });
-    item.appendChild(deleteButton);
+    buttons_container.appendChild(deleteButton);
   }
 }
 
