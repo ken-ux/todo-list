@@ -30,12 +30,12 @@ if (localStorage.getItem("projects")) {
   projects.push(new Project("default_2"));
   projects.push(new Project("default_3"));
 
-  projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
-  projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
-  projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
-  projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
-  projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
-  projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
+  projects[0].addToProject(new ToDo("todo", "desc", "date", "Low"));
+  projects[0].addToProject(new ToDo("todo_2", "desc", "date", "Medium"));
+  projects[0].addToProject(new ToDo("todo_3", "desc", "date", "High"));
+  projects[1].addToProject(new ToDo("todo", "desc", "date", "Low"));
+  projects[1].addToProject(new ToDo("todo_2", "desc", "date", "Low"));
+  projects[2].addToProject(new ToDo("todo", "desc", "date", "Low"));
   saveToStorage();
 }
 
@@ -116,8 +116,7 @@ export function displayProject(project) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.addEventListener("click", () => {
-      const editToDoDialog = document.querySelector("#edit-todo");
-      editToDoDialog.showModal();
+      populateEditForm(project.items[i]);
     });
     item.appendChild(editButton);
 
@@ -191,4 +190,24 @@ function removeFromProjects(project) {
   let index = projects.findIndex((a) => a === project);
   projects.splice(index, 1);
   saveToStorage();
+}
+
+function populateEditForm(item) {
+  const editToDoDialog = document.querySelector("#edit-todo");
+  editToDoDialog.showModal();
+
+  const editToDoForm = document.querySelector("#edit-todo > form");
+  document.querySelector("#edit-todo input#name").value = item.name;
+  document.querySelector("#edit-todo input#desc").value = item.description;
+  document.querySelector("#edit-todo input#dueDate").value = item.dueDate;
+  document.querySelector("#edit-todo select#priority").value = item.priority;
+
+  const cancelButton = document.querySelector("#edit-todo .cancel-button");
+  cancelButton.addEventListener(
+    "click",
+    () => {
+      editToDoDialog.close();
+    },
+    { once: true }
+  );
 }
