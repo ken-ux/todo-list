@@ -7,17 +7,17 @@ export default class ToDo {
     this.complete = false;
   }
 
-  get name() {
-    return this._name;
-  }
+  // get name() {
+  //   return this._name;
+  // }
 
-  set name(value) {
-    if (value === "") {
-      throw new TypeError("Name cannot be empty.");
-    } else {
-      this._name = value;
-    }
-  }
+  // set name(value) {
+  //   if (value === "") {
+  //     throw new TypeError("Name cannot be empty.");
+  //   } else {
+  //     this._name = value;
+  //   }
+  // }
 
   toggleComplete() {
     this.complete = !this.complete;

@@ -4,17 +4,17 @@ export default class Project {
     this.items = new Array();
   }
 
-  get name() {
-    return this._name;
-  }
+  // get name() {
+  //   return this._name;
+  // }
 
-  set name(value) {
-    if (value === "") {
-      throw new TypeError("Name cannot be empty.");
-    } else {
-      this._name = value;
-    }
-  }
+  // set name(value) {
+  //   if (value === "") {
+  //     throw new TypeError("Name cannot be empty.");
+  //   } else {
+  //     this._name = value;
+  //   }
+  // }
 
   addToProject(item) {
     this.items.push(item);

@@ -3,18 +3,19 @@ import ToDo from "./toDo";
 
 export const projects = [];
 
+// localStorage.clear();
 if (localStorage.getItem("projects")) {
   // Load existing projects
   const storedProjects = loadStorage();
 
   for (let i = 0; i < storedProjects.length; i++) {
-    const project = new Project(storedProjects[i]._name);
+    const project = new Project(storedProjects[i].name);
 
     // Add stored todos to each stored project
     for (let j = 0; j < storedProjects[i].items.length; j++) {
       const details = storedProjects[i].items[j];
       const todo = new ToDo(
-        details._name,
+        details.name,
         details.description,
         details.dueDate,
         details.priority
