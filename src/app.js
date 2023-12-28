@@ -2,16 +2,41 @@ import Project from "./project";
 import ToDo from "./toDo";
 
 export const projects = [];
-projects.push(new Project("default"));
-projects.push(new Project("default_2"));
-projects.push(new Project("default_3"));
 
-projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
-projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
-projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
-projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
-projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
-projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
+if (localStorage.getItem("projects")) {
+  // Load existing projects
+  const storedProjects = loadStorage();
+
+  for (let i = 0; i < storedProjects.length; i++) {
+    const project = new Project(storedProjects[i]._name);
+
+    // Add stored todos to each stored project
+    for (let j = 0; j < storedProjects[i].items.length; j++) {
+      const details = storedProjects[i].items[j];
+      const todo = new ToDo(
+        details._name,
+        details.description,
+        details.dueDate,
+        details.priority
+      );
+      project.addToProject(todo);
+    }
+    projects.push(project);
+  }
+} else {
+  // Initialize default projects
+  projects.push(new Project("default"));
+  projects.push(new Project("default_2"));
+  projects.push(new Project("default_3"));
+
+  projects[0].addToProject(new ToDo("todo", "desc", "date", "priority"));
+  projects[0].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
+  projects[0].addToProject(new ToDo("todo_3", "desc", "date", "priority"));
+  projects[1].addToProject(new ToDo("todo", "desc", "date", "priority"));
+  projects[1].addToProject(new ToDo("todo_2", "desc", "date", "priority"));
+  projects[2].addToProject(new ToDo("todo", "desc", "date", "priority"));
+  saveToStorage();
+}
 
 export function saveToStorage() {
   localStorage.setItem("projects", JSON.stringify(projects));
