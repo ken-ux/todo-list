@@ -71,6 +71,11 @@ export function displayProject(project) {
   while (projectItems.hasChildNodes()) {
     projectItems.removeChild(projectItems.firstChild);
   }
+
+  if (project === undefined) {
+    return;
+  }
+
   // Display title
   projectName.textContent = project.name;
 
@@ -82,11 +87,23 @@ export function displayProject(project) {
   // Display delete project button
   const deleteProjectButton = document.createElement("button");
   deleteProjectButton.classList = "delete-project-button";
-  deleteProjectButton.textContent = "Delete List";
+  deleteProjectButton.textContent = "Delete Project";
   main.insertBefore(deleteProjectButton, projectItems);
   deleteProjectButton.addEventListener("click", () => {
     removeFromProjects(project);
     displaySidebarProjects();
+    if (projects.length === 0) {
+      projectName.textContent = "";
+      main.removeChild(deleteProjectButton);
+      displayProject();
+    } else {
+      for (let i = 0; i < projects.length; i++) {
+        if (projects[i]) {
+          displayProject(projects[i]);
+          return;
+        }
+      }
+    }
     saveToStorage();
   });
 
@@ -121,6 +138,7 @@ addProjectForm.addEventListener("submit", () => {
   let name = formData.get("name");
   projects.push(new Project(name));
   displaySidebarProjects(projects);
+  displayProject(projects[projects.length - 1]);
   saveToStorage();
 });
 
