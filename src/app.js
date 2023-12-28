@@ -116,7 +116,7 @@ export function displayProject(project) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.addEventListener("click", () => {
-      populateEditForm(project.items[i]);
+      populateEditForm(project, project.items[i]);
     });
     item.appendChild(editButton);
 
@@ -192,7 +192,7 @@ function removeFromProjects(project) {
   saveToStorage();
 }
 
-function populateEditForm(item) {
+function populateEditForm(project, item) {
   const editToDoDialog = document.querySelector("#edit-todo");
   editToDoDialog.showModal();
 
@@ -201,6 +201,25 @@ function populateEditForm(item) {
   document.querySelector("#edit-todo input#desc").value = item.description;
   document.querySelector("#edit-todo input#dueDate").value = item.dueDate;
   document.querySelector("#edit-todo select#priority").value = item.priority;
+
+  editToDoForm.addEventListener(
+    "submit",
+    () => {
+      const editToDoForm = document.querySelector("#edit-todo > form");
+      const formData = new FormData(editToDoForm);
+      const name = formData.get("name");
+      const desc = formData.get("desc");
+      const dueDate = formData.get("dueDate");
+      const priority = formData.get("priority");
+      item.name = name;
+      item.description = desc;
+      item.dueDate = dueDate;
+      item.priority = priority;
+      displayProject(project);
+      saveToStorage();
+    },
+    { once: true }
+  );
 
   const cancelButton = document.querySelector("#edit-todo .cancel-button");
   cancelButton.addEventListener(
