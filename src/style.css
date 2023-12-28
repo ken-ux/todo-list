@@ -4,7 +4,9 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-h1 {
+h1,
+h2,
+p {
   margin: 0;
 }
 
@@ -12,10 +14,6 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 4fr;
   min-height: 100vh;
-}
-
-#content > * {
-  border: 1px solid red;
 }
 
 #sidebar,
@@ -27,6 +25,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: dodgerblue;
+  color: white;
 }
 
 #sidebar #projects {
@@ -38,7 +38,7 @@ main {
 main {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 main > button,
@@ -47,6 +47,22 @@ main > button,
 }
 
 #project-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#project-items > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid rgba(0, 0, 0, 20%);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 20%);
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+#project-items > div > div:first-child {
   display: flex;
   flex-direction: column;
   gap: 1rem;
