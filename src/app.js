@@ -97,9 +97,10 @@ export function displayProject(project) {
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.addEventListener("click", () =>
-      console.log("Edit details here")
-    );
+    editButton.addEventListener("click", () => {
+      const editToDoDialog = document.querySelector("#edit-todo");
+      editToDoDialog.showModal();
+    });
     projectItems.appendChild(editButton);
 
     const deleteButton = document.createElement("button");

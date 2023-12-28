@@ -58,5 +58,32 @@
         <button type="button" class="cancel-button">Cancel</button>
       </form>
     </dialog>
+    <dialog id="edit-todo">
+      <form action="" method="dialog">
+        <h1>Edit To-Do</h1>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="desc">Description</label>
+          <input type="text" id="desc" name="desc" />
+        </div>
+        <div>
+          <label for="dueDate">Due Date</label>
+          <input type="date" id="dueDate" name="dueDate" />
+        </div>
+        <div>
+          <label for="priority">Priority</label>
+          <select name="priority" id="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+        <button type="button" class="cancel-button">Cancel</button>
+      </form>
+    </dialog>
   </body>
 </html>
