@@ -87,6 +87,7 @@ export function displayProject(project) {
   deleteProjectButton.addEventListener("click", () => {
     removeFromProjects(project);
     displaySidebarProjects();
+    saveToStorage();
   });
 
   // Display to-dos
@@ -101,15 +102,16 @@ export function displayProject(project) {
       const editToDoDialog = document.querySelector("#edit-todo");
       editToDoDialog.showModal();
     });
-    projectItems.appendChild(editButton);
+    item.appendChild(editButton);
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", () => {
       project.removeFromProject(project.items[i]);
       displayProject(project);
+      saveToStorage();
     });
-    projectItems.appendChild(deleteButton);
+    item.appendChild(deleteButton);
   }
 }
 
@@ -119,6 +121,7 @@ addProjectForm.addEventListener("submit", () => {
   let name = formData.get("name");
   projects.push(new Project(name));
   displaySidebarProjects(projects);
+  saveToStorage();
 });
 
 const cancelProjectButton = document.querySelector(
@@ -142,6 +145,7 @@ addToDoForm.addEventListener("submit", () => {
     new ToDo(name, desc, dueDate, priority)
   );
   displayProject(projects[projectToAddTo]);
+  saveToStorage();
 });
 
 const cancelToDoButton = document.querySelector(
@@ -168,4 +172,5 @@ export function displayProjectSelect() {
 function removeFromProjects(project) {
   let index = projects.findIndex((a) => a === project);
   projects.splice(index, 1);
+  saveToStorage();
 }
